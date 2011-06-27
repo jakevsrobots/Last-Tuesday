@@ -10,875 +10,465 @@ init:
     $ event("grocery_store_1", "act == 'grocery_store'", event.once(), event.only(), priority=200)
     $ event("grocery_store_2", "act == 'grocery_store'", event.once(), event.only(), priority=210)
     $ event("grocery_store_3", "act == 'grocery_store'", event.once(), event.only(), priority=220)
-    $ event("grocery_store_4", "act == 'grocery_store'", event.once(), event.only(), priority=230)
-    $ event("library_1", "act == 'library'", priority=200)
-    $ event("radio_1", "act == 'radio'", priority=200)    
+    $ event("grocery_store_4", "act == 'grocery_store'", event.only(), priority=230)
 
-label grocery_store_bonus:
-    show bg grocery
-    with fade
+    $ event("library_1", "act == 'library'", event.once(), event.only(), priority=200)
+    $ event("library_2", "act == 'library'", event.once(), event.only(), priority=210)
+    $ event("library_3", "act == 'library'", event.once(), event.only(), priority=220)
+    $ event("library_4", "act == 'library'", event.only(), priority=230)
 
-    "Bonus for 15 or greater curiosity"
-    return
-    
+    $ event("radio_1", "act == 'radio'", event.once(), event.only(), priority=200)
+    $ event("radio_2", "act == 'radio'", event.once(), event.only(), priority=210)
+    $ event("radio_3", "act == 'radio'", event.once(), event.only(), priority=220)
+    $ event("radio_4", "act == 'radio'", event.only(), priority=230)
+
+    $ stat_increment_amount = 15
+
+# Grocery store
 label grocery_store_1:
-    show bg grocery
+    scene bg grocery
     with fade
     
     "The shelves of the grocery store were full, like they'd just been stocked."
     "I'd never had fresh coconut before, so I broke one open on a cash register and made a small breakfast of it."
 
-    show black
-    with fade
-
-    $ curiosity += 15
+    $ curiosity += stat_increment_amount
     return
 
 label grocery_store_2:
-    show bg grocery
+    scene bg grocery
     with fade
     
     "Some of the fruit and vegetables at the grocery store were starting to rot."
     "I dug around looking for something interesting to eat, some new and unusual breakfast."
     "Eventually, I settled on canned cactus. They tasted a bit like green beans."
 
-    show black
-    with fade
-    
-    $ curiosity += 15
+    $ curiosity += stat_increment_amount
     return
     
 label grocery_store_3:
-    show bg grocery
+    scene bg grocery
     with fade
 
     "The grocery store was beginning to smell like an alleyway."
     "I steered clear of the produce and butchery sections, and focused on canned goods."
     "After rejecting shelves of chili, soup, and vegetables, I finally found a can of cuban-style black beans. That sounded like a reasonable breakfast."
-
-    show black
-    with fade
     
-    $ curiosity += 15
+    $ curiosity += stat_increment_amount
     return
 
 label grocery_store_4:
-    show bg grocery
+    scene bg grocery
     with fade
 
     "The smell of rotting meat overwhelmed me, and I had to leave."
 
-    show black
+    scene black
     with fade
     
     return
-    
+
+# Library
 label library_1:
-    "The library."
-    $ memory += 15
+    scene bg library
+    with fade
+    
+    "The large front doors of the public library were unlocked."
+    "It was quiet. That was nothing new."
+    "On the front counter, a small pile of books was waiting to be returned to the shelf."
+    "I picked up the top book -- 'The Quiet Earth,' by Craig Harrison."
+    "Since no one else was going to re-shelve it, I thought I might as well."
+    "If anyone ever came back, at least they'd be able to find the books they were looking for."
+    "I put the book back on the shelf, in the 'science fiction' section."
+    
+    $ memory += stat_increment_amount
+    
     return
 
+label library_2:
+    scene bg library
+    with fade
+    
+    "The air in the library seemed a bit stale."
+    "I took another book from the front counter. 'The Girl Who Owned a City,' by O.T. Nelson."
+    "It was a story set in Chicago, where I grew up. I flipped through the book looking for familiar street names."
+    "After a few minutes, I put the book back on the shelf, in the 'young adult' section."
+    
+    $ memory += stat_increment_amount
+    return
+
+label library_3:
+    scene bg library
+    with fade
+
+    "The air conditioning system at the library must have broken down."
+    "I almost choked on the warm, dusty air circulating through the building."
+    "I took the next book from the front counter. 'The World Without Us,' by Alan Weisman."
+    "The short blurb on the back sounded interesting, but I didn't really feel like reading."    
+    "I put the book back on the shelf, in the 'popular science' section."
+
+    $ memory += stat_increment_amount
+    return
+
+label library_4:
+    scene bg library
+    with fade
+    
+    "When I opened the door to the library, I was hit with a wave of dust and warm air."
+    "With the air conditioning system broken, I knew that the only chance for these books to stay preserved was to keep the building sealed."
+    "The library door would have to stay shut."
+    
+    return
+
+# Radio
 label radio_1:
+    scene bg radio
+    with fade
+
+    "I found a car with the keys still in the ignition. It wouldn't start, but I could turn on the radio.."
+    "It was just static."
+    "I turned the tuning dial all the way down and very slowly moved up through the stations."
+    "For a moment, I heard something that sounded like a voice ..."
+    "But it was just interference."
+    $ empathy += stat_increment_amount
+    return
+
+label radio_2:
+    scene bg radio
+    with fade
+
+    "The radio seemed a bit quieter that day."
+    "I dialed the tuning knob further up the spectrum."
+    "One signal stood out from the rest: a repeating buzzer, like a doorbell or a car alarm."
+    "I wondered if was some kind of machine left running alone, or just interference from a broadcast tower bending in the wind."
+    
+    $ empathy += stat_increment_amount
+    return
+
+label radio_3:
+    scene bg radio
+    with fade
+    
+    "I switched on the car radio, but could barely hear it."
+    "I raised the volume as high as it would go, pressed my ear to the speaker, and started tuning for stations."
+    "I hit upon something that sounded almost like music ..."
+    "But then it was gone. The car battery had died completely."
+    "Later, I wondered if I had even heard music at all -- or if the hiss of radio static had just started to {b}sound{/b} like music."
+    
+    $ empathy += stat_increment_amount
+    return
+
+label radio_4:
+    scene bg radio
+    with fade
+    
+    "I couldn't get the radio to switch back on. The car battery was completely drained."
     return
 
 # ---------------------------
 # Afternoon
 # ---------------------------
 init:
-    $ event("building_1", "act == 'building'", priority=200)
-    $ event("magazines_1", "act == 'magazines'", priority=200)
-    $ event("cleaned_house_1", "act == 'cleaned_house'", priority=200)    
+    $ event("park_1", "act == 'park'", event.once(), event.only(), priority=200)
+    $ event("park_2", "act == 'park'", event.once(), event.only(), priority=210)
+    $ event("park_3", "act == 'park'", event.once(), event.only(), priority=220)
+    $ event("park_4", "act == 'park'", event.only(), priority=230)
+    
+    $ event("newspaper_1", "act == 'newspaper'", event.once(), event.only(), priority=200)
+    $ event("newspaper_2", "act == 'newspaper'", event.once(), event.only(), priority=210)
+    $ event("newspaper_3", "act == 'newspaper'", event.once(), event.only(), priority=220)
+    $ event("newspaper_4", "act == 'newspaper'", event.only(), priority=230)
+    
+    $ event("cleaned_house_1", "act == 'cleaned_house'", event.once(), event.only(), priority=200)
+    $ event("cleaned_house_2", "act == 'cleaned_house'", event.once(), event.only(), priority=210)
+    $ event("cleaned_house_3", "act == 'cleaned_house'", event.once(), event.only(), priority=220)
+    $ event("cleaned_house_4", "act == 'cleaned_house'", event.only(), priority=230)
 
-label building_1:
-    "A building"
-    $ curiosity += 15
+# Park    
+label park_1:
+    scene bg park
+    with fade
+    
+    "I liked the city park, but had never spent much time there."
+    "It was small, but lush, with a man-made lake in the middle."
+    "I remember the ground was wet, soft, almost like mud. Even though it hadn't rained in weeks."
+    
+    $ curiosity += stat_increment_amount
     return
 
-label magazines_1:
+label park_2:
+    scene bg park
+    with fade
+    
+    "The ground at the park was definitely turning to mud."
+    "When I reached the small lake at the middle, I noticed that the pumps had turned off."
+    "I guess they needed some human maintenance."
+    "With no one there to operate them, the park was turning into a swamp."
+    
+    $ curiosity += stat_increment_amount
     return
+
+label park_3:
+    scene bg park
+    with fade
+    
+    "It was getting difficult to trudge through the swampy park without being totally mired."
+    "I found a small pumping station, but it was padlocked shut."
+    "The lake had turned a deep, brownish gray. Everything was sinking together."
+    
+    $ curiosity += stat_increment_amount
+    return
+
+label park_4:
+    scene bg park
+    with fade
+
+    "I tried to enter the park, but almost lost a shoe. The small man-made lake had completely seeped into the grassy land around it."
+    "The park had turned into a swamp."
+    
+    return
+
+# Newspaper
+label newspaper_1:
+    scene bg newspaper
+    with fade
+
+    "I found a newspaper on the street; it was a bit damp but still legible."
+    "The headline was something about the military -- some investigation."
+    "I studied it carefully, but didn't quite have the context to make sense of it."
+    "Still, I committed the details to memory. Perhaps it would be the last headline, I thought."
+    
+    $ memory += stat_increment_amount
+    return
+
+label newspaper_2:
+    scene bg newspaper
+    with fade
+
+    "The newspaper's ink was running; it was difficult to make out words."
+    "The 'Arts and Culture' section had an article about a new exhibit at the modern art museum."
+    "It was a large-scale installation made of dead fruit-flies."
+    "I wondered if bats had already eaten it."
+    
+    $ memory += stat_increment_amount
+    return
+
+label newspaper_3:
+    scene bg newspaper
+    with fade
+
+    "The pages of the newspaper were stuck together. Peeling them apart, I could tell I was destroying it."
+    "I was able to make out a classified ad in the back -- still legible because the buyer had paid extra for bold text."
+    "He sounded lonely."
+    
+    $ memory += stat_increment_amount
+    return
+
+label newspaper_4:
+    scene bg newspaper
+    with fade
+
+    "The newspaper had turned into a stack of blotted, grayish pulp. I could just barely make out the cover photo."
+
+    return
+
+
+# House
 
 label cleaned_house_1:
+    scene bg living_room
+    with fade
+
+    "Years ago, before I started working for the office building downtown, I worked for a maid service."
+    "I found a house nearby, and thought I might go in and do some dusting."
+    "If the people who lived there ever came back, they might not want to deal with all that dust."
+    "The dust was already collecting on the coffee table."
+    "I swept it off, and straightened some magazines."
+    
+    $ empathy += stat_increment_amount
+    return
+
+label cleaned_house_2:
+    scene bg living_room
+    with fade
+
+    "I went back to the same house. It wasn't dusty anymore."
+    "I took some time to clean the dishes in the sink and pick up a few stray plates."
+    "I wondered if the people living here had last eaten breakfast or dinner ... it was impossible to tell."
+
+    $ empathy += stat_increment_amount
+    return
+
+label cleaned_house_3:
+    scene bg living_room
+    with fade
+
+    "The house was getting much better."
+    "I folded some clean clothes I found in a laundry basket and set them on the bed."
+    "There were two women's blouses of very different sizes. A mother and daughter? Sisters? Or lovers?"
+
+    $ empathy += stat_increment_amount
+    return
+
+label cleaned_house_4:
+    scene bg living_room
+    with fade
+
+    "The house was very clean. If the people who lived there had come back the next day, I'm sure they would have been comfortable."
+    "But they didn't."
+
     return
 
 # ---------------------------
 # Evening
 # ---------------------------
 init:
-    $ event("theater_1", "act == 'theater'", priority=200)
-    $ event("spanish_1", "act == 'spanish'", priority=200)
-    $ event("television_1", "act == 'television'", priority=200)    
+    $ event("theater_1", "act == 'theater'", event.once(), event.only(), priority=200)
+    $ event("theater_2", "act == 'theater'", event.once(), event.only(), priority=210)
+    $ event("theater_3", "act == 'theater'", event.once(), event.only(), priority=220)
+    $ event("theater_4", "act == 'theater'", event.only(), priority=230)
 
-label television_1:
-    "Watching tv"
-    $ empathy += 15
-    return
+    $ event("spanish_1", "act == 'spanish'", event.once(), event.only(), priority=200)
+    $ event("spanish_2", "act == 'spanish'", event.once(), event.only(), priority=210)
+    $ event("spanish_3", "act == 'spanish'", event.once(), event.only(), priority=220)
+    $ event("spanish_4", "act == 'spanish'", event.only(), priority=230)
 
-label spanish_1:
-    return
+    $ event("television_1", "act == 'television'", event.once(), event.only(), priority=200)
+    $ event("television_2", "act == 'television'", event.once(), event.only(), priority=210)
+    $ event("television_3", "act == 'television'", event.once(), event.only(), priority=220)
+    $ event("television_4", "act == 'television'", event.only(), priority=230)
 
+# Theater
 label theater_1:
+    scene bg theater
+    with fade
+
+    "There was a theater near the financial district that used to show old movies."
+    "I'd always plan to go there and see some classic or another, but never quite made it."
+    "The front door was locked, but I could see a key on the desk just inside the ticket booth."
+    "There was a small hole in the glass, where the cashier and the customer would exchange money for tickets."
+    "I struggled to reach my hand through. It was a tight fit. I managed to grasp a ticket stub, but that's all."
+
+    $ curiosity += stat_increment_amount
     return
 
+label theater_2:
+    scene bg theater
+    with fade
 
-# Some characters that are used in events in the game.
-# init:
-#     $ t = Character('Teacher')
-#     $ gg = Character('Glasses Girl', color=(192, 255, 192, 255))
-#     $ sg = Character('Sporty Girl', color=(255, 255, 192, 255))
-#     $ bg = Character('Both Girls')
-#     $ narrator = Character(' ')
+    "I found a piece of rope in the alley behind the theater, and I thought maybe I could use it to snare the keys from the ticket booth."
+    "I held the rope between my index and middle fingers, and pushed it thorugh the window."
+    "I swung it back and forth to gain momentum a few times, then snapped my wrist toward the key."
+    "But the rope slipped out of my fingers and fell on the floor."
+
+    $ curiosity += stat_increment_amount
+    return
+
+label theater_3:
+    scene bg theater
+    with fade
+
+    "I found a bent but solid piece of wire in the street outside the theater."
+    "I bent the end of it into a hook, and pushed it carefully through the ticket booth window."
+    "I managed to hook the key with the wire, then slowly slid it back across the desk and out of the window."
+    "The key didn't work in the front door. I walked around to the alley and tried a door there -- but no luck."
+    "I guess it must have been the bathroom key?"
+
+    $ curiosity += stat_increment_amount
+    return
+
+label theater_4:
+    scene bg theater
+    with fade
+
+    "The theater was locked shut, and my key didn't work. I gave up and moved on."
+
+    return
+
+# Spanish
+label spanish_1:
+    scene bg spanish
+    with fade
     
-# # First up, we define some simple events for the various actions, that
-# # are run only if no higher-priority event is about to occur.
-
-# init:
-#     $ event("class", "act == 'class'", event.only(), priority=200)
-#     $ event("class_bad", "act == 'class'", priority=210)
-#     $ event("cut1", "act == 'cut'", event.choose_one('cut'), priority=200)
-#     $ event("cut2", "act == 'cut'", event.choose_one('cut'), priority=200)
-#     $ event("study", "act == 'study'", event.solo(), priority=200)
-#     $ event("hang", "act == 'hang'", event.solo(), priority=200)
-#     $ event("exercise", "act == 'exercise'", event.solo(), priority=200)    
-#     $ event("play", "act == 'play'", event.solo(), priority=200)
-
-# label class:
-
-#     "I make it to class just in time, and proceed to listen to the
-#      teacher droning on about a wide range of topics, none of which
-#      are remotely interesting."
-
-#     return
-
-# # For test purposes only.
-# label class_bad:
-
-#     "You shouldn't be seeing this."
-
-#     "This is because class was declared with event.only(), which
-#      should suspend processing of further events."
-
-#     "This is really for testing purposes only."
-
-#     return
-
-# label cut1:
-
-#     "I cut class, and spend the morning goofing off instead."
-#     $ intelligence -= 10
-
-#     return
-
-# label cut2:
-
-#     "I cut class, and spend the morning playing computer games."
-
-#     return
-
-# label study:
-
-#     "I head on down to the library, and start reading about the topics
-#      I should have been reading about in class."
-
-#     $ intelligence += 10
-#     return
-
-# label hang:
-
-#     "I spend the afternoon hanging out with my friends, killing
-#      some time."
+    "I found some notes I'd taken in a Spanish class a few years before, at a community college."
+    "Flipping through them, I realized I'd spent much more time drawing weird, angry faces than actually writing down Spanish verbs and nouns."
+    "But there were a few in there. I thought I might as well brush up. Maybe become the only Spanish-speaking person in the city ..."
+    "City -- Ciudad."
     
-#     return
+    $ memory += stat_increment_amount
+    return
 
-# label exercise:
-
-#     "I decide to go out for a run through the town, to keep myself in
-#      shape."
-
-#     $ strength += 10
-#     return
-
-# label play:
-
-#     "I pop a DVD into my video game console, and spend the evening
-#      rolling small cities up into balls."
-
-#     $ strength -= 10
-#     return
-
-
-# # Below here are special events that are triggered when certain
-# # conditions are true. 
-
-# # This is an introduction event, that runs once when we first go
-# # to class. 
-
-# init:
-#     $ event("introduction", "act == 'class'", event.once(), event.only())
-
-# label introduction:
-
-#     "I run to school, and make it to my seat just as the bell
-#      signalling the start of class rings."
-
-#     t "Before we start, I have an announcement to make."
-
-#     t "We will have two new students joining us. Girls, come on in."
-
-#     "Two girls walk in, and stand in front of the class."
-
-#     "They're twins."
-
-#     "Identical twins."
-
-#     "Identical black hair, and the same pretty face."
-
-#     "Despite that, it's still fairly easy to tell them apart."
-
-#     "The one on the left is wearing glasses."
-
-#     "Not too thick, but enough to let me know she probably reads alot
-#      of books."
-
-#     "If I look a little closely, I can find another difference."
-
-#     "The one on the right probably exercises a bit more."
-
-#     "I can tell by the muscle tone in her legs."
-
-#     "I realize that I'm staring at her legs, and quickly look up."
-
-#     "Suddenly, I realize that she's been talking for all this town."
-
-#     sg "... to this town. And we hope to be friends with all of you."
-
-#     sg "Well, that's about it. Sis, do you have anything to say?"
-
-#     "The girl with glasses pauses for a second, and then quickly says:"
-
-#     gg "{size=-4}It's good to meet you all.{/size}"
-
-#     "She stops, and goes back to not saying anything."
-
-#     t "Well, if that's all, you can take your seats and we can start
-#        the class."
-
-#     "They do, and our teacher begins his lecture."
-
-#     "I don't think anyone pays much attention to it, however."
-
-#     return
-
-
-# # These are the events with glasses girl.
-
-# init:
-#     # The glasses girl is studying in the library, but we do not
-#     # talk to her.
-#     #
-#     # 
-#     $ event("gg_studying",
-
-#             # This takes place when the action is 'study'.
-#             "act == 'study'",
-
-#             # This will only take place if no higher-priority
-#             # event will occur.
-#             event.solo(),
-
-#             # This takes place at least one day after seeing the
-#             # introduction event.
-#             event.depends("introduction"),
-
-#             # This takes priority over the study event.
-#             priority=190)
-
-#     # She asks to borrow our pen. 
-#     $ event("borrow_pen",
-
-#             # This takes place when we go to study, and we have an int
-#             # >= 50. 
-#             "act == 'study' and intelligence >= 50",
-
-#             # It runs only once.
-#             event.once(),
-
-#             # It requires the introduction event to have run at least
-#             # one day before.
-#             event.depends("introduction"))
-
-#     # After the pen, she smiles when she sees us.
-#     $ event("gg_smiling", "act == 'study'",
-#             event.solo(), event.depends("borrow_pen"),
-#             priority = 180)
-
-#     # The bookslide.
-#     $ event("bookslide", "act == 'study' and intelligence == 100",
-#             event.once(), event.depends("borrow_pen"))
-
-#     # She makes us cookies.
-#     $ event("cookies", "act == 'study'",
-#             event.once(), event.depends("bookslide"))
-
-#     # Her solo ending.
-#     $ event("gg_confess", "act == 'class'",
-#             event.once(), event.depends("cookies"))
-
+label spanish_2:
+    scene bg spanish
+    with fade
     
-# label gg_studying:
-
-#     "I head to the library, to get some studying done."
-
-#     "The glasses girl is there, but she's busy reading a book, taking
-#      notes as she does so."
-
-#     "I decide not to disturb her, and instead start reading my own
-#      book."
-
-#     $ intelligence += 10
-
-#     return
-
-# label borrow_pen:
-
-#     "I head to the library, to get some studying done."
-
-#     "The glasses girl is there, but she's busy reading a book."
-
-#     "I decide not to disturb her, and instead start reading my own
-#      book."
-
-#     "Suddenly, I feel a tap on my shoulder."
-
-#     "I look up, and see the glasses girl standing right next to me."
-
-#     gg "Excuse me, but can I borrow your pen?"
-
-#     gg "Mine ran out of ink."
-
-#     "I dig through my bag, to find the pen I had stashed there."
-
-#     "While I'm looking, I point out that she seems to come to the
-#      library alot."
-
-#     gg "Hm... I guess you're right."
-
-#     gg "There's so much stuff here, and I want to know about it all."
-
-#     gg "Surely, you must feel the same way, as you're here almost as
-#         much as I am."
-
-#     "I don't have the heart to tell her that I'm only here to study so
-#      that I don't fail out."
-
-#     "My hand brushes the pen, and I quickly pull it out and give it to
-#      her."
-
-#     gg "Thank you."
-
-#     "She says, and she goes back to studying."
-
-#     return
-
-# label gg_smiling:
-
-#     "I head to the library, to get some studying done."
-
-#     "The glasses girl is there, and smiles at me for a second before
-#      turning back to her book."
-
-#     "I decide not to disturb her, and instead start reading my own
-#      book."
-
-#     $ intelligence += 10
-
-#     return
-
-# label bookslide:
-
-#     "I head to the library, to get some studying done."
-
-#     "The glasses girl is standing right by the entrance, putting a
-#      book back into a bookcase containing science books."
-
-#     "It looks quite old, and quite weak, as if it could break at any
-#      time."
-
-#     "Suddenly, I hear a loud crack come from the bookcase."
-
-#     "Without thinking, I throw myself between the girl and the
-#      bookcase, pushing her out of the way in the process."
-
-#     "As the shelves fail one by one, I'm hit with large textbooks on
-#      topics ranging from Astronomy to Zoology."
-
-#     "She's safe, but I'm knocked off my feet by the falling books."
-
-#     "Before the dust even settled, the girl with glasses realized what
-#      happened and asked:"
-
-#     gg "Are you alright?"
-
-#     "I tell her that I am, all the while rubbing a bruise left by a
-#      particularly large Physics book."
-
-#     gg "You saved me."
-
-#     "She points out. I shrug... I guess I did, but it's not like I'm a
-#      hero or anything."
-
-#     "She extends out her hand, I take it, and she helps me to get up."
-
-#     gg "Wow... Um..."
-
-#     "She doesn't know what to say."
-
-#     "I suggest that we help clean up the mess, mostly to take her off
-#      the spot."
-
-#     "She agrees, and together we begin piling the books up into neat
-#      piles."
-
-#     return
-
-
-# label cookies:
-
-#     "I head to the library, to get some studying done."
-
-#     "The glasses girl is there, apparently waiting for me."
-
-#     "She's holding a package in her hands."
-
-#     gg "Here."
-
-#     "She says, and she hands me the package."
-
-#     "I take it from her, and open it."
-
-#     "It contains fresh homemade cookies. Ginger snaps, I think."
-
-#     gg "It's to thank you."
-
-#     "She points out... She's probably not used to this. Especially
-#      with guys."
-
-#     "I take one of them, and stick it in my mouth."
-
-#     "The taste is exquisite."
-
-#     "It's perhaps one of the best cookies I've ever tasted."
-
-#     "Of course it is. It's the only cookie I'd ever tasted that was
-#      made for me by a beutiful girl."
-
-#     "I tell her this... that it's delicious, not the girl part."
-
-#     "But I do let slip that if I could eat these every day, I'd be the
-#      happiest guy in the world."
-
-#     "At this, she can only blush."
-
-#     return
-
-# label gg_confess:
-
-#     "I once again barely make it to class on time."
-
-#     "I sit down, at my desk, and put some of my books into it."
-
-#     "My hand brushes a folded sheet of paper, one I didn't remember
-#      putting in there."
-
-#     "It's a girl's handwriting... \"Meet me on the roof at lunch.\""
-
-#     "That's all it says... no signature or anything."
-
-#     "Lunch is a few hours away, but the time passes like a blur."
-
-#     "It's all I can do to avoid racing up to the roof... but I give it
-#      some time anyway."
-
-#     "It wouldn't make sense for me to get there first."
-
-#     "I let two minutes elapse before leaving the classroom, and then
-#      slowly walk the flights of stairs up to the roof."
-
-#     "Standing there, I find the glasses girl."
-
-#     "She's holding what looks like a homemade lunch... big enough for
-#      two."
-
-#     "I look at it, then her, then remember what I had said after she
-#      made me the cookies."
-
-#     "Finally, I ask her... \"Does this mean?\""
-
-#     "She nods. It's all the confirmation I need."
-
-#     "I sit down next to my new girlfriend... and together we start
-#      eating her lunch."
-
-#     "I'm probably the happiest guy in the world."
-
-#     "But I still have to find out her name."
-
-#     ".:. Ending 1."
-
-#     $ renpy.full_restart()
-
-
-# init:
-
-#     $ event("catchme", "act == 'exercise'",
-#             event.depends('introduction'), event.once())
-
-#     $ event("cantcatchme", "act == 'exercise'",
-#             event.depends('catchme'), event.solo(), priority=190)
-
-#     $ event("caughtme", "act == 'exercise' and strength >= 50",
-#             event.depends('catchme'), event.once())
-
-#     $ event("together", "act == 'exercise' and strength >= 50",
-#             event.depends('caughtme'), event.solo(), priority=180)
-
-#     $ event("apart", "act == 'exercise' and strength < 50",
-#             event.depends('caughtme'), event.solo(), priority=180)
-
-#     $ event("pothole", "act == 'exercise' and strength >= 100",
-#             event.depends('caughtme'), event.once())
-
-#     $ event("dontsee", "act == 'exercise'",
-#             event.depends('pothole'), event.solo(), priority=170)
+    "I flipped through my Spanish notes. Next to a drawing of what might have been a super-hero, or maybe a porn star, was the word 'contexto.'"
+    "I assumed that meant 'context.'  There wasn't anything else written near it."
     
-#     $ event("sg_confess", "act == 'class'",
-#             event.depends('dontsee'), event.once())
+    $ memory += stat_increment_amount
+    return
 
-
-# label catchme:
-
-#     "I decide to go out for a run, to keep myself in shape."
-
-#     "As I'm running through the town, I see a girl."
-
-#     "She's one of the twins who transferred into my class."
-
-#     "She waves, and comes over to me."
-
-#     sg "I didn't know you were a runner."
-
-#     "I point out that I'm not really a runner... I just run a little
-#      bit at a time."
-
-#     "I ask her if she wants to run with me for a while."
-
-#     sg "As if! You couldn't keep up with me."
-
-#     "I point out that I probably can."
-
-#     sg "Well, let's see."
-
-#     "We set off running, but she quickly pulls past me."
-
-#     sg "See? Well, maybe we can try it again when you're a bit
-#         faster."
-
-#     sg "Until then, later."
-
-#     "Even though I'm jogging, she pulls away as if it is nothing."
-
-#     return
-
-# label cantcatchme:
-
-#     "I'm out running again, when the sporty girl catches up to me."
-
-#     sg "Still at it?"
-
-#     sg "Well, keep up the good work. One day you'll be as fast as me!"
-
-#     sg "Well, maybe."
-
-#     "She pulls out past me, and disappears into the distance. One day
-#      I'll catch up to her."
-
-#     $ strength += 10
-
-#     return
-
-# label caughtme:
-
-#     "I'm out running again, when the sporty girl catches up to me."
-
-#     sg "Still at it?"
-
-#     sg "Well, keep up the good work. One day you'll be as fast as me!"
-
-#     sg "Well, maybe."
-
-
-#     "Today, however, I'm not about to let this stand unchallenged."
-
-#     "I break out into a run, and for the first time ever, I keep up
-#      with her."
-
-#     "We both run, neck and neck, me keeping up with her."
-
-#     "Finally, she starts slowing down, and we come to a stop
-#      together."
-
-#     sg "Not bad."
-
-#     "She pauses to catch her breath."
-
-#     sg "You've been practicing, and it really shows."
+label spanish_3:
+    scene bg spanish
+    with fade
     
-#     sg "You've finally become fast enough to run with me."
-
-#     "I nod, accepting her praise."
-
-#     sg "We should do this more often... it's better to run with
-#         someone else, to keep the challenge up."
-
-#     "I nod again."
-
-#     sg "Well, shall we go?"
-
-#     "I nod a third time, and we take off, running side by side."
-
-#     $ strength += 10
-
-#     return
-
-# label together:
-
-#     "I start running, and meet up with the sporty girl as she passes
-#      the street in front of my house."
-
-#     "She's still better than me... she's been running for over a mile
-#      before reaching this point."
-
-#     "Still, I can keep up with her for the rest of the run. And that's
-#      not bad."
-
-#     $ strength += 10
-
-#     return
-
-# label apart:
-
-#     "I start running, and meet up with the sporty girl as she passes
-#      the street in front of my house."
-
-#     "I try to keep up with her, but she pulls away from me."
-
-#     "When she's a block away, she slows down and lets me catch up."
-
-#     sg "It's your own fault... this is what you get for not
-#         practicing."
-
-#     "She's right, of course, and I redouble my efforts to try to keep
-#      up with her."
-
-#     $ strength += 10
-#     return
-
-# label pothole:
-
-#     "I start running, and meet up with the sporty girl as she passes
-#      the street in front of my house."
-
-#     "We run together for several miles."
-
-#     "I think about how much I've improved in our time together."
-
-#     "And, although she probably won't admit it, I think she's improved
-#      as well."
-
-#     "I guess a little friendly competition is usually for the best."
-
-#     "A small yelp pulls me out of my thought."
-
-#     sg "Ow!"
-
-#     "The sporty girl sits down, grabbing her ankle."
-
-#     "I ask her what happened."
-
-#     sg "I... hit a... pothole. Twisted my... ankle."
-
-#     "I wince in sympathy."
-
-#     "We wait a bit. I'm not sure what to do."
-
-#     "Finally, I ask her if she can walk on it."
-
-#     "She tries for a bit, but then winces in pain."
-
-#     sg "No, I don't think so."
-
-#     "I realize that we can't stay here."
-
-#     "And so, I crouch down and motion for her to climb up onto my
-#      back."
-
-#     sg "What are you doing?"
-
-#     "I explain that she can't stay out in the middle of the street
-#      forever, and she won't get any help until I can get her home."
-
-#     "And the only way to do that is for me to carry her."
-
-#     "She accepts this, and climbs up onto my back."
-
-#     "She wraps her arms around my neck, and I place my hands
-#      underneath her to make a seat."
-
-#     "I stand up, and start carrying her home."
-
-#     return
-
-# label dontsee:
-
-#     "I go running again."
-
-#     "But this time, I don't see the sporty girl."
-
-#     "I finish the course that we usually take, but it's not the same
-#      without her."
-
-#     return
-
-# label sg_confess:
-
-#     "I once again barely make it to class on time."
-
-#     "I sit down, at my desk, and put some of my books into it."
-
-#     "My hand brushes a folded sheet of paper, one I didn't remember
-#      putting in there."
-
-#     "It's a girl's handwriting... \"Meet me on the roof at lunch.\""
-
-#     "That's all it says... no signature or anything."
-
-#     "Lunch is a few hours away, but the time passes like a blur."
-
-#     "It's all I can do to avoid racing up to the roof... but I give it
-#      some time anyway."
-
-#     "It wouldn't make sense for me to get there first."
-
-#     "I let two minutes elapse before leaving the classroom, and then
-#      slowly walk the flights of stairs up to the roof."
-
-#     "Standing there, I find the sporty girl."
-
-#     "She's leaning on a crutch."
-
-#     "I look at it for a second, and she notices that."
-
-#     sg "I went to the doctor, and he gave me this."
-
-#     sg "Looks like we won't be running together for a while."
-
-#     "I nod."
-
-#     sg "And that's why I asked you here."
-
-#     sg "I couldn't stand the though of not seeing you for a few
-#         weeks."
-
-#     "I search my feelings, and realize I feel the same way."
-
-#     sg "So I thought..."
-
-#     "She doesn't say it... she doesn't need to."
-
-#     "We both know how we feel about each other."
-
-#     "And with that, we went from being running partners to partners in
-#      a deeper sense."
-
-#     "Now if I only knew her name..."
-
-#     ".:. Ending 2."
-
-#     $ renpy.full_restart()
-
-
-# init:
-
-#     # This needs to be higher-priority than either girl's ending.    
-#     $ event('both_confess', 'act == "class"',
-#             event.depends("dontsee"), event.depends("cookies"),
-#             event.once(), priority = 50)
-     
-# label both_confess:
-
-#     "I once again barely make it to class on time."
-
-#     "I sit down, at my desk, and put some of my books into it."
-
-#     "My hand brushes a folded sheet of paper, then another."
-
-#     "I take the first one out, and read it."
-
-#     "It's a girl's handwriting... \"Meet me on the roof at lunch.\""
-
-#     "That's all it says... no signature or anything."
-
-#     "I take a look at the second one, and it says the same thing."
-
-#     "Sure, the handwriting is a little different, but..."
-
-#     "Lunch is a few hours away, but the time passes like a blur."
-
-#     "It's all I can do to avoid racing up to the roof... but I give it
-#      some time anyway."
+    "As I worked through my Spanish notes, they were making less and less sense."
+    "I couldn't remember what might have been going on in my life at the end of that class that would have distracted me so much."
+    "I found one English/Spanish noun pair, near a sketch of a car parked on an empty highway: 'tranquilo.'"
+    "'Quiet.'"
     
-#     "I let two minutes elapse before leaving the classroom, and then
-#      slowly walk the flights of stairs up to the roof."
+    $ memory += stat_increment_amount
+    return
 
-#     "Standing there are the twins."
-
-#     "Both of them."
-
-#     "As in, the two notes came from the two twins."
-
-#     "I ask them what they are doing there, feigning ignorance."
-
-#     sg "Well, I invited you up here to confess to you..."
-
-#     sg "... and then I found out that my sister here was about to do
-#         the same thing."
-
-#     gg "{size=-4}...I was...{/size}"
-
-#     sg "When we found out, we were quite shocked, but after comparing
-#         notes, we decide what we're going to do..."
-
-#     "I quickly run through the possibilities in my head."
-
-#     "The best cases involve them never talking to me again."
-
-#     "The worst cases involve me being thrown off the roof."
-
-#     bg "We're going to share you!"
-
-#     "Eh?"
-
-#     "That wasn't something I considered."
-
-#     "Each of the girls grabs onto one of my arms."
-
-#     "I don't know what the future holds for us..."
-
-#     "... and I don't know if this will work out."
-
-#     "But I do know that one day I will work up the courage to find out
-#      their names."
-
-#     ".:. Ending 3."
-
-#     $ renpy.full_restart()
+label spanish_4:
+    scene bg spanish
+    with fade
     
+    "My Spanish notes didn't even make sense near the end. I don't think most of the words were even completely written down."
+    "They weren't going to do me any more good. But I'd refreshed myself on a little Spanish, in the meantime."
+    
+    return
+
+# Television
+label television_1:
+    scene bg tv
+    with fade
+    
+    "The television in my apartment still worked, but there were no stations broadcasting."
+    "I sat for a while in the dark, watching white noise, flipping channels compulsively."
+    "I thought about all the people in the TV shows that were no longer being broadcast."
+    "Those characters and all their problems just ... ceased to exist?"
+    
+    $ empathy += stat_increment_amount
+    return
+
+label television_2:
+    scene bg tv
+    with fade
+    
+    "I set the TV to channel 9 and pretended I was watching a nature show."
+    "I imagined the narrator was documenting a new form of TV static: its mating habits, its nasty and brutish living conditions."
+    "I imagined that it pained the narrator to describe."
+    
+    $ empathy += stat_increment_amount
+    return
+
+label television_3:
+    scene bg tv
+    with fade
+    
+    "It was difficult to remember television before the static."
+    "I tried to pick a channel and imagine a news program, a game show, something ...."
+    "For a while, I pretended to watch a black-and-white cartoon about fleas in a snowstorm."
+    
+    $ empathy += stat_increment_amount
+    return
+
+label television_4:
+    scene bg tv
+    with fade
+    
+    "I switched the TV on, but at that point it was just noise."
+    "I couldn't remember any shows to pretend."
+    
+    return

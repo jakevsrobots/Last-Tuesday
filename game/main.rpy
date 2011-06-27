@@ -1,3 +1,5 @@
+image bg black_bg = "images/black-bg.png"
+
 image bg bedroom_night = "images/bedroom-night.png"
 image bg bedroom_morning = "images/bedroom-morning.png"
 image bg outside_apartment = "images/outside-apartment.png"
@@ -6,6 +8,26 @@ image bg freeway = "images/freeway.png"
 image bg downtown = "images/downtown.png"
 
 image bg grocery = "images/grocery-aisle.png"
+image bg library = "images/library.png"
+image bg radio = "images/radio.png"
+
+image bg park = "images/city-park.png"
+image bg living_room = "images/living-room.png"
+image bg newspaper = "images/newspaper.png"
+
+image bg theater = "images/theater.png"
+image bg spanish = "images/spanish.png"
+image bg tv = "images/tv.png"
+
+image bg hallway = "images/hallway.png"
+image bg closet = "images/closet.png"
+image bg phone = "images/phone.png"
+image bg door = "images/door.png"
+
+image bg europe_street = "images/europe-street.png"
+image bg cafeteria = "images/cafeteria.png"
+image bg cabinets = "images/cabinets.png"
+
 
 # Set up a default theme.
 init python:
@@ -19,8 +41,8 @@ init python:
     dp_choice("Dialed a radio", "radio")                         # empathy
     
     dp_period("Afternoon", "afternoon_act")
-    dp_choice("Explored a building", "building")                 # curiosity
-    dp_choice("Collected magazines", "magazines")                # memory
+    dp_choice("Explored the park", "park")                       # curiosity
+    dp_choice("Read a newspaper", "newspaper")                   # memory
     dp_choice("Cleaned someone's house", "cleaned_house")        # empathy
     
     dp_period("Evening", "evening_act")
@@ -45,7 +67,7 @@ label start:
     scene black
     with pixellate
     "I had a dream, but I can't remember it ... "
-    "... something about a river ... running water ..."
+    "... something about a windchime ... a cave ..."
 
     scene bg bedroom_morning
     with pixellate
@@ -102,6 +124,7 @@ label day:
     $ game_round += 1
     #$ game_round = 2
 
+    "curiosity=%(curiosity)d, empathy=%(empathy)d, memory=%(memory)d"
     # Here, we want to set up some of the default values for the
     # day planner. In a more complicated game, we would probably
     # want to add and remove choices from the dp_ variables
@@ -116,14 +139,14 @@ label day:
     # to new values. We call it with a list of periods that we want
     # to compute the values for.
 
-    show bg bedroom_morning
+    scene bg bedroom_morning
     with fade
     
     call day_planner(["Morning", "Afternoon", "Evening"])
     
     # We process each of the three periods of the day, in turn.
 label morning:
-    show black
+    scene black
     with fade
     
     # Tell the user what period it is.
@@ -144,7 +167,7 @@ label morning:
     # afternoon.
 
 label afternoon:
-    show black
+    scene black
     with fade
 
     centered "Afternoon"
@@ -156,9 +179,8 @@ label afternoon:
     
     call events_run_period
 
-
 label evening:
-    show black
+    scene black
     with fade
     
     centered "Evening"
@@ -172,16 +194,17 @@ label evening:
     
 
 label night:
+    scene black
+    with fade
 
     # This is now the end of the day, and not a period in which
     # events can be run. We put some boilerplate end-of-day text
     # in here.
 
-    centered "Night"
+    # centered "Night"
 
     # We call events_end_day to let it know that the day is done.
     call events_end_day
-
 
     # Figure out if a dream should happen, and if so which one
     $ dream_to_have = 0
@@ -206,7 +229,7 @@ label night:
             dreams_had.append(4)            
 
     if dream_to_have == 0:
-        "I slept."
+        "That night, I slept restlessly."
         
         scene black
         with fade
