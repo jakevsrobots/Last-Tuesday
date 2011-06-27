@@ -31,9 +31,9 @@ image bg cabinets = "images/cabinets.png"
 
 # Set up a default theme.
 init python:
-    register_stat("Curiosity", "curiosity", 0, 100)
-    register_stat("Empathy", "empathy", 0, 100)
-    register_stat("Memory", "memory", 0, 100)
+    register_stat("Curiosity", "curiosity", 0, 9)
+    register_stat("Empathy", "empathy", 0, 9)
+    register_stat("Memory", "memory", 0, 9)
 
     dp_period("Morning", "morning_act")
     dp_choice("Explored a grocery store", "grocery_store")       # curiosity
@@ -57,7 +57,7 @@ label start:
 
     scene black
     
-    jump day
+    #jump day
     
     scene bg bedroom_night
     with fade
@@ -215,16 +215,16 @@ label night:
             if stat > highest_stat:
                 highest_stat = stat
                 
-        if highest_stat >= 25 and 1 not in dreams_had:
+        if highest_stat >= 2 and 1 not in dreams_had:
             dream_to_have = 1
             dreams_had.append(1)
-        elif highest_stat >= 50 and 2 not in dreams_had:
+        elif highest_stat >= 4 and 2 not in dreams_had:
             dream_to_have = 2
             dreams_had.append(2)
-        elif highest_stat >= 75 and 3 not in dreams_had:
+        elif highest_stat >= 6 and 3 not in dreams_had:
             dream_to_have = 3
             dreams_had.append(3)
-        elif highest_stat >= 100 and 4 not in dreams_had:
+        elif highest_stat >= 8 and 4 not in dreams_had:
             dream_to_have = 4
             dreams_had.append(4)            
 

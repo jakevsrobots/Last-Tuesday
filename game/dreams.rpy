@@ -23,11 +23,15 @@ label dream_1:
 label dream_1_where:
     "Voice" "You are in the city. But you shouldn't be."
 
+    $ curiosity += 1
+    
     jump dream_1_end
 
 label dream_1_who:
     "Voice" "I am the authority. I make the rules."
 
+    $ empathy += 1
+    
     jump dream_1_end
 
 label dream_1_end:
@@ -65,12 +69,16 @@ label dream_2_work:
     "I missed staying late in the building, cleaning the empty halls and picking things up from office floors."
     "When the staff had gone home, I could just focus on my work and listen to the air conditioner drone."
 
+    $ memory += 1
+    
     jump dream_2_end
 
 label dream_2_janitor:
     "Maybe he'd gone home early. But I could tell the floors still needed mopping."
     "Maybe he'd had an emergency. I could do him a favor by cleaning up a bit."
 
+    $ empathy += 1
+    
     jump dream_2_end
     
 label dream_2_end:
@@ -111,12 +119,16 @@ label dream_3_who:
     "I could hear something like soft music coming from the other end of the line."
     "The music slowly got louder, then suddenly cut off."
 
+    $ curiosity += 1
+    
     jump dream_3_end    
 
 label dream_3_janitor:
     "Voice on Phone" "Please empty the recycling bin on your way out."
     "Voice on Phone" "And please --"
 
+    $ memory += 1
+    
     jump dream_3_end
 
 label dream_3_end:
@@ -158,7 +170,7 @@ label ending_router:
         highest_stat = 0
 
         for stat in [curiosity, empathy, memory]:
-            if stat > highest_stat_value:
+            if stat > highest_stat:
                 highest_stat = stat
 
     if highest_stat == curiosity:

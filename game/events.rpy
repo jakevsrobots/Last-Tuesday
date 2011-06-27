@@ -22,7 +22,7 @@ init:
     $ event("radio_3", "act == 'radio'", event.once(), event.only(), priority=220)
     $ event("radio_4", "act == 'radio'", event.only(), priority=230)
 
-    $ stat_increment_amount = 15
+    $ stat_increment_amount = 1
 
 # Grocery store
 label grocery_store_1:
